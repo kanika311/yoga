@@ -14,7 +14,7 @@ export default function BlogForm({ id }) {
     content: "",
     image: "",
     category: "Wellness",
-    author: "Mummy Move",
+    author: "MummaMove",
     published: true,
   });
 
@@ -28,7 +28,7 @@ export default function BlogForm({ id }) {
         content: b.content || "",
         image: b.image || "",
         category: b.category || "Wellness",
-        author: b.author || "Mummy Move",
+        author: b.author || "MummaMove",
         published: b.published !== false,
       })
     );

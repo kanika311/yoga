@@ -31,7 +31,7 @@ const settingsSchema = new Schema<ISettings>(
   {
     siteName: {
       type: String,
-      default: "Mummy Move",
+      default: "MummaMove",
     },
 
     tagline: {

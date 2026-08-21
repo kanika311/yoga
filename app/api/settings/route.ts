@@ -18,7 +18,7 @@ export async function GET() {
 
     if (!settings) {
       settings = await Settings.create({
-        siteName: "Mummy Move",
+        siteName: "MummaMove",
 
         tagline: "Yoga for a healthy life",
 

@@ -15,7 +15,7 @@ export default async function AboutPage() {
       <PageHero
         image={PHOTOS.studio}
         eyebrow="Our story"
-        title="Mummy Move's trump card"
+        title="MummaMove's trump card"
         subtitle="Certified experts, a rigorous selection process, and programs designed around the individual — not a packed studio."
         cta={{ href: "/book-demo", label: "Free Consultation" }}
       />
@@ -35,7 +35,7 @@ export default async function AboutPage() {
           <h2 className="display">{settings.founderName || "Shilpa"}</h2>
           <p className="mt-5 leading-relaxed text-forest-mid">
             {settings.founderBio ||
-              "Shilpa is a multifaceted expert in naturopathy, yoga, nutrition, and alternative therapies. She offers personalized guidance in diet and lifestyle changes. Together with her team, she has trained a diverse clientele worldwide in prenatal, postnatal, and fertility yoga."}
+              "Priya Sharma is a multifaceted expert in naturopathy, yoga, nutrition, and alternative therapies. She offers personalized guidance in diet and lifestyle changes. Together with her team, she has trained a diverse clientele worldwide in prenatal, postnatal, and fertility yoga."}
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {[
@@ -56,11 +56,11 @@ export default async function AboutPage() {
       <section className="bg-white">
         <div className="section grid items-center gap-12 lg:grid-cols-2">
           <div>
-            <p className="eyebrow">The Mummy Move advantage</p>
+            <p className="eyebrow">The MummaMove advantage</p>
             <h2 className="display">Passionate care, reflected in every session</h2>
             <p className="mt-5 leading-relaxed text-forest-mid">
               {settings.about ||
-                "Mummy Move is an online yoga training platform for prenatal, postnatal and therapeutic yoga. Customized sessions integrate diet plans and lifestyle changes as per each client's body and health needs. Follow-up programs keep wellbeing on track. We are not just another class you may come across online."}
+                "MummaMove is an online yoga training platform for prenatal, postnatal and therapeutic yoga. Customized sessions integrate diet plans and lifestyle changes as per each client's body and health needs. Follow-up programs keep wellbeing on track. We are not just another class you may come across online."}
             </p>
             <Link href="/book-demo" className="btn-forest mt-8">
               Free trial class

@@ -26,9 +26,9 @@ export default function Header() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-8">
         <Link href="/" className="flex items-center gap-3">
-          <Image src="/logo.png" alt="Mummy Move" width={56} height={56} className="h-12 w-12 rounded-full object-cover ring-1 ring-gold/40 md:h-14 md:w-14" />
+          <Image src="/logo.png" alt="MummaMove" width={56} height={56} className="h-12 w-12 rounded-full object-cover ring-1 ring-gold/40 md:h-14 md:w-14" />
           <div className="leading-tight">
-            <p className={`font-serif text-lg md:text-xl ${scrolled || open ? "text-forest" : "text-cream"}`}>Mummy Move</p>
+            <p className={`font-serif text-lg md:text-xl ${scrolled || open ? "text-forest" : "text-cream"}`}>MummaMove</p>
             <p className={`text-[10px] uppercase tracking-[0.22em] ${scrolled || open ? "text-forest-leaf" : "text-gold-soft"}`}>Yoga for a healthy life</p>
           </div>
         </Link>

@@ -45,7 +45,7 @@ export default function AdminShell({ children }) {
           <Link href="/admin-yoga" className="flex items-center gap-3 px-5 py-6">
             <Image src="/logo.png" alt="" width={40} height={40} className="h-10 w-10 rounded-full object-cover" />
             <div>
-              <p className="font-serif text-lg">Mummy Move CMS</p>
+              <p className="font-serif text-lg">MummaMove CMS</p>
            
             </div>
           </Link>

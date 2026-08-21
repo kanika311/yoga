@@ -60,7 +60,7 @@ export default function InquiryForm({ type = "contact", defaultProgram = "" }) {
         <p className="font-script text-3xl text-gold">Thank you</p>
         <h3 className="mt-2 font-serif text-3xl text-forest">We will reach out shortly</h3>
         <p className="mt-3 text-sm text-forest-mid">
-          A Mummy Move specialist will review your details and connect for a complimentary consultation.
+          A Mumma move specialist will review your details and connect for a complimentary consultation.
         </p>
       </div>
     );

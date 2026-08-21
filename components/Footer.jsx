@@ -26,7 +26,7 @@ export default async function Footer() {
 
   const siteName =
     settings?.siteName ||
-    "Mummy Move";
+    "MummaMove";
 
   const tagline =
     settings?.tagline ||

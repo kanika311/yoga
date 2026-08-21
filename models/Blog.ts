@@ -8,7 +8,7 @@ const blogSchema = new Schema(
     content: String,
     image: String,
     category: { type: String, default: "Wellness" },
-    author: { type: String, default: "Mummy Move" },
+    author: { type: String, default: "MummaMove" },
     published: { type: Boolean, default: true },
     views: { type: Number, default: 0 },
   },

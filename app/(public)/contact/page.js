@@ -17,7 +17,7 @@ export default function ContactPage() {
       <section className="section grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="rounded-[2rem] bg-forest p-8 text-cream md:p-10">
           <p className="text-xs uppercase tracking-[0.28em] text-gold-soft">Studio</p>
-          <h2 className="mt-2 font-serif text-4xl">Mummy Move</h2>
+          <h2 className="mt-2 font-serif text-4xl">MummaMove</h2>
           <ul className="mt-8 space-y-5 text-cream/85">
             <li className="flex gap-3"><MapPin className="text-gold" />{SITE.address}</li>
             <li className="flex gap-3"><Mail className="text-gold" /><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>

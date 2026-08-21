@@ -15,7 +15,7 @@ export default async function BlogPage() {
         image={PHOTOS.lotus}
         eyebrow="Blogs"
         title="Guides for pregnancy, rest and nourishment"
-        subtitle="Clear, practical writing from the Mummy Move studio — prenatal yoga, sleep, nutrition and recovery."
+        subtitle="Clear, practical writing from the MummaMove studio — prenatal yoga, sleep, nutrition and recovery."
       />
       <section className="section">
         {posts.length === 0 ? (
