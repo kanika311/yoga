@@ -24,7 +24,7 @@ export default function BlogsAdmin() {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <h1 className="font-serif text-4xl text-forest">Journal</h1>
+        <h1 className="font-serif text-4xl text-forest">Blogs</h1>
         <Link href="/admin-yoga/blogs/new" className="btn-gold">
           New article
         </Link>

@@ -34,10 +34,10 @@ export default function Footer() {
           <h3 className="mb-4 font-serif text-xl">Explore</h3>
           <ul className="space-y-2 text-sm text-cream/80">
             <li><Link href="/about" className="hover:text-gold">About Us</Link></li>
-            <li><Link href="/blog" className="hover:text-gold">Journal</Link></li>
+            <li><Link href="/blog" className="hover:text-gold">Blogs</Link></li>
             <li><Link href="/contact" className="hover:text-gold">Contact</Link></li>
             <li><Link href="/book-demo" className="hover:text-gold">Book a Free Demo</Link></li>
-            <li><Link href="/admin-yoga" className="hover:text-gold">Admin</Link></li>
+          
           </ul>
         </div>
 

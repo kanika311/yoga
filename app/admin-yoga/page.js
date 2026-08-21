@@ -32,7 +32,7 @@ export default function AdminDashboard() {
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
           ["Inquiries", stats.inquiries, "/admin-yoga/inquiries"],
-          ["Journal posts", stats.blogs, "/admin-yoga/blogs"],
+          ["Blogs", stats.blogs, "/admin-yoga/blogs"],
           ["Programs", stats.programs, "/admin-yoga/programs"],
           ["FAQs", stats.faqs, "/admin-yoga/faqs"],
         ].map(([l, n, href]) => (

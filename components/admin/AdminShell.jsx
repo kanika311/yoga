@@ -20,7 +20,7 @@ const LINKS = [
   { href: "/admin-yoga", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin-yoga/inquiries", label: "Inquiries", icon: Inbox },
   { href: "/admin-yoga/programs", label: "Programs", icon: Dumbbell },
-  { href: "/admin-yoga/blogs", label: "Journal", icon: BookOpen },
+  { href: "/admin-yoga/blogs", label: "Blogs", icon: BookOpen },
   { href: "/admin-yoga/faqs", label: "FAQs", icon: HelpCircle },
   { href: "/admin-yoga/testimonials", label: "Testimonials", icon: Quote },
   { href: "/admin-yoga/settings", label: "Settings", icon: Settings },
@@ -46,7 +46,7 @@ export default function AdminShell({ children }) {
             <Image src="/logo.png" alt="" width={40} height={40} className="h-10 w-10 rounded-full object-cover" />
             <div>
               <p className="font-serif text-lg">Heal-In CMS</p>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-gold-soft">/admin-yoga</p>
+           
             </div>
           </Link>
           <nav className="flex-1 space-y-1 px-3">
