@@ -1,11 +1,20 @@
 import mongoose from "mongoose";
 
-const URI =
-  process.env.MONGO_URI ||
-  process.env.MONGODB_URI ||
-  "";
+const MONGO_URI = process.env.MONGO_URI;
 
-const globalWithCache = global;
+interface MongooseCache {
+  conn: typeof mongoose | null;
+  promise: Promise<typeof mongoose> | null;
+}
+
+declare global {
+  // eslint-disable-next-line no-var
+  var mongooseCache: MongooseCache | undefined;
+}
+
+const globalWithCache = globalThis as typeof globalThis & {
+  mongooseCache?: MongooseCache;
+};
 
 if (!globalWithCache.mongooseCache) {
   globalWithCache.mongooseCache = {
@@ -14,24 +23,31 @@ if (!globalWithCache.mongooseCache) {
   };
 }
 
+const cached = globalWithCache.mongooseCache;
+
 export async function connectDB() {
-  if (!URI) {
-    throw new Error("MONGO_URI is not set");
+  if (!MONGO_URI) {
+    throw new Error(
+      "Please define MONGO_URI in your environment variables"
+    );
   }
 
-  const cache = globalWithCache.mongooseCache;
-
-  if (cache.conn) {
-    return cache.conn;
+  if (cached.conn) {
+    return cached.conn;
   }
 
-  if (!cache.promise) {
-    mongoose.set("strictQuery", true);
-
-    cache.promise = mongoose.connect(URI);
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(MONGO_URI, {
+      bufferCommands: false,
+    });
   }
 
-  cache.conn = await cache.promise;
+  try {
+    cached.conn = await cached.promise;
+  } catch (error) {
+    cached.promise = null;
+    throw error;
+  }
 
-  return cache.conn;
+  return cached.conn;
 }
