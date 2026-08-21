@@ -24,7 +24,7 @@ export default async function AboutPage() {
         <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem]">
           <Image
             src={settings.founderImage || PHOTOS.founder}
-            alt={settings.founderName || "Shilpa"}
+            alt={settings.founderName || "Priya Sharma"}
             fill
             className="object-cover"
             sizes="(min-width:1024px) 40vw, 100vw"
@@ -32,7 +32,7 @@ export default async function AboutPage() {
         </div>
         <div>
           <p className="eyebrow">Holistic wellness expertise</p>
-          <h2 className="display">{settings.founderName || "Shilpa"}</h2>
+          <h2 className="display">{settings.founderName || "Priya Sharma"}</h2>
           <p className="mt-5 leading-relaxed text-forest-mid">
             {settings.founderBio ||
               "Priya Sharma is a multifaceted expert in naturopathy, yoga, nutrition, and alternative therapies. She offers personalized guidance in diet and lifestyle changes. Together with her team, she has trained a diverse clientele worldwide in prenatal, postnatal, and fertility yoga."}
