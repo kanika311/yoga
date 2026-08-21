@@ -1,32 +1,42 @@
 import { NextRequest, NextResponse } from "next/server";
-
 import { requireAuth } from "@/lib/auth";
 
-import fs from "fs";
+import fs from "fs/promises";
 import path from "path";
 import crypto from "crypto";
 
-export async function POST(
-  req: NextRequest
-) {
+export const runtime = "nodejs";
+
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
+
+const ALLOWED_TYPES: Record<string, string> = {
+  "image/jpeg": ".jpg",
+  "image/png": ".png",
+  "image/webp": ".webp",
+  "image/gif": ".gif",
+};
+
+export async function POST(req: NextRequest) {
   try {
-    /**
-     * Only authenticated admin
-     * can upload images.
-     */
+    // --------------------------------------------------
+    // 1. Authentication
+    // --------------------------------------------------
+
     const { error } = await requireAuth();
 
     if (error) {
       return error;
     }
 
+    // --------------------------------------------------
+    // 2. Get form data
+    // --------------------------------------------------
+
     const formData = await req.formData();
 
-    const file = formData.get(
-      "image"
-    ) as File | null;
+    const file = formData.get("image");
 
-    if (!file) {
+    if (!(file instanceof File)) {
       return NextResponse.json(
         {
           message: "No image selected",
@@ -37,14 +47,17 @@ export async function POST(
       );
     }
 
-    /**
-     * Validate image type.
-     */
-    if (!file.type.startsWith("image/")) {
+    // --------------------------------------------------
+    // 3. Validate file type
+    // --------------------------------------------------
+
+    const extension = ALLOWED_TYPES[file.type];
+
+    if (!extension) {
       return NextResponse.json(
         {
           message:
-            "Only image files are allowed",
+            "Only JPG, PNG, WEBP and GIF images are allowed",
         },
         {
           status: 400,
@@ -52,18 +65,25 @@ export async function POST(
       );
     }
 
-    /**
-     * Maximum file size:
-     * 5 MB
-     */
-    const MAX_FILE_SIZE =
-      5 * 1024 * 1024;
+    // --------------------------------------------------
+    // 4. Validate file size
+    // --------------------------------------------------
+
+    if (file.size <= 0) {
+      return NextResponse.json(
+        {
+          message: "Invalid image file",
+        },
+        {
+          status: 400,
+        }
+      );
+    }
 
     if (file.size > MAX_FILE_SIZE) {
       return NextResponse.json(
         {
-          message:
-            "Image size must be less than 5MB",
+          message: "Image size must be less than 5MB",
         },
         {
           status: 400,
@@ -71,94 +91,99 @@ export async function POST(
       );
     }
 
-    /**
-     * Upload directory:
-     *
-     * public/uploads
-     */
-    const uploadDirectory =
-      path.join(
-        process.cwd(),
-        "public",
-        "uploads"
-      );
+    // --------------------------------------------------
+    // 5. Upload directory
+    // --------------------------------------------------
 
-    /**
-     * Create folder if it
-     * does not exist.
-     */
-    if (
-      !fs.existsSync(uploadDirectory)
-    ) {
-      fs.mkdirSync(
-        uploadDirectory,
+    const uploadDirectory = path.join(
+      process.cwd(),
+      "public",
+      "uploads"
+    );
+
+    // Create directory if it doesn't exist
+    await fs.mkdir(uploadDirectory, {
+      recursive: true,
+    });
+
+    // --------------------------------------------------
+    // 6. Generate unique filename
+    // --------------------------------------------------
+
+    const filename =
+      `${Date.now()}-${crypto.randomUUID()}${extension}`;
+
+    // --------------------------------------------------
+    // 7. Create file path
+    // --------------------------------------------------
+
+    const filePath = path.join(
+      uploadDirectory,
+      filename
+    );
+
+    // --------------------------------------------------
+    // 8. Convert File -> Buffer
+    // --------------------------------------------------
+
+    const bytes = await file.arrayBuffer();
+
+    const buffer = Buffer.from(bytes);
+
+    // --------------------------------------------------
+    // 9. Save image
+    // --------------------------------------------------
+
+    await fs.writeFile(filePath, buffer);
+
+    // --------------------------------------------------
+    // 10. Verify file exists
+    // --------------------------------------------------
+
+    try {
+      await fs.access(filePath);
+    } catch {
+      return NextResponse.json(
         {
-          recursive: true,
+          message:
+            "Image was uploaded but could not be verified",
+        },
+        {
+          status: 500,
         }
       );
     }
 
-    /**
-     * Get file extension.
-     */
-    let extension =
-      path
-        .extname(file.name)
-        .toLowerCase();
+    // --------------------------------------------------
+    // 11. Public URL
+    // --------------------------------------------------
 
-    /**
-     * Fallback extension.
-     */
-    if (!extension) {
-      extension = ".jpg";
-    }
+    const url = `/uploads/${filename}`;
 
-    /**
-     * Generate unique filename.
-     */
-    const filename =
-      `${Date.now()}-` +
-      `${crypto.randomUUID()}` +
-      extension;
+    // If you need complete URL:
+    const origin = req.nextUrl.origin;
 
-    /**
-     * Convert file to Buffer.
-     */
-    const bytes =
-      await file.arrayBuffer();
+    const fullUrl = `${origin}${url}`;
 
-    const buffer =
-      Buffer.from(bytes);
+    // --------------------------------------------------
+    // 12. Response
+    // --------------------------------------------------
 
-    /**
-     * Final file path.
-     */
-    const filePath =
-      path.join(
-        uploadDirectory,
-        filename
-      );
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Image uploaded successfully",
 
-    /**
-     * Save image.
-     */
-    fs.writeFileSync(
-      filePath,
-      buffer
+        filename,
+
+        url,
+
+        fullUrl,
+      },
+      {
+        status: 201,
+      }
     );
-
-    /**
-     * Public URL.
-     */
-    const url =
-      `/uploads/${filename}`;
-
-    return NextResponse.json({
-      message:
-        "Image uploaded successfully",
-
-      url,
-    });
   } catch (error) {
     console.error(
       "POST /api/upload error:",
@@ -167,8 +192,8 @@ export async function POST(
 
     return NextResponse.json(
       {
-        message:
-          "Image upload failed",
+        success: false,
+        message: "Image upload failed",
       },
       {
         status: 500,
