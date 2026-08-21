@@ -50,30 +50,30 @@ async function run() {
 
   const password = await bcrypt.hash(process.env.ADMIN_PASSWORD || "Admin@123", 10);
   await User.create({
-    name: "Heal-In Admin",
+    name: "Mummy Move Admin",
     email: process.env.ADMIN_EMAIL || "admin@healinsutras.com",
     password,
     role: "admin",
   });
 
   await Settings.create({
-    siteName: "Heal-In Sutras",
+    siteName: "Mummy Move",
     tagline: "Fertility | Preconception | Prenatal | Postnatal Holistic Healing, Tailored to You",
-    email: "yoga@healinsutras.com",
+    email: "yoga@mummamove.com",
     phone: "+91 8178930262",
     whatsapp: "918178930262",
-    address: "Plot No. 5B, Sector - 15A, Neelam Ajronda Chowk, Faridabad, Haryana 121007",
-    about:
-      "Heal-In Sutras is an online yoga training platform for prenatal, postnatal and therapeutic yoga sessions. We offer customized yoga with a holistic approach — integrating diet plans and lifestyle changes as per each client's body and health needs.",
+    address: "A-43 Dheeraj Nagar, Yamuna Enclave, Faridabad, 121003",
+    about:  
+      "Mummy Move is an online yoga training platform for prenatal, postnatal and therapeutic yoga sessions. We offer customized yoga with a holistic approach — integrating diet plans and lifestyle changes as per each client's body and health needs.",
     founderName: "Shilpa",
     founderBio:
-      "Shilpa is a multifaceted expert in naturopathy, yoga, nutrition, and alternative therapies. She offers personalized guidance in diet and lifestyle changes. Together with her team, she has trained clients worldwide in prenatal, postnatal, and fertility yoga.",
+      "Priya Sharma is a multifaceted expert in naturopathy, yoga, nutrition, and alternative therapies. She offers personalized guidance in diet and lifestyle changes. Together with her team, she has trained clients worldwide in prenatal, postnatal, and fertility yoga.",
     founderImage: img.founder,
     hours: "Online sessions by appointment — across 15+ time zones",
     social: {
-      instagram: "https://instagram.com",
-      facebook: "https://facebook.com",
-      youtube: "https://youtube.com",
+      instagram: "https://www.instagram.com/mumma_move?igsi=cm04NGZldHhwcjBl&utm_source=qr",
+      facebook: "https://www.facebook.com/share/1F2JsJna9K/?mibextid=wwXIfr",
+      youtube: "https://youtube.com/@yogaforhealthylife-zf6rb?si=m-Kct9dCcJ7M8Obz",
     },
   });
 
@@ -190,7 +190,7 @@ async function run() {
       order: 1,
     },
     {
-      question: "How is Heal-In Sutras different from other prenatal yoga studios?",
+      question: "How is Mummy Move different from other prenatal yoga studios?",
       answer:
         "We take a holistic approach that extends far beyond the mat. Sessions are never generic — we work to address root causes. Trainers are certified, handpicked after a rigorous process, and supported by yoga experts, naturopaths, dietitians and birthing specialists.",
       category: "general",
@@ -265,7 +265,7 @@ async function run() {
     {
       slug: "about",
       title: "About Us",
-      heroTitle: "Heal-In Sutra's Trump Card",
+      heroTitle: "Mummy Move's Trump Card",
       heroSubtitle: "Certified experts. Holistic methods. Personal care across 15 countries.",
       heroImage: img.yogaStudio,
       sections: [
@@ -275,7 +275,7 @@ async function run() {
           image: img.founder,
         },
         {
-          heading: "The Heal-In Advantage",
+          heading: "The Mummy Move Advantage",
           body: "We are not just another online yoga class. Customized sessions integrate diet plans and lifestyle changes as per your body and health needs, with follow-up programs for lasting wellbeing.",
           image: img.nature,
         },
@@ -293,7 +293,7 @@ async function run() {
       category: "Prenatal",
       content: `Pregnancy is a wonderful yet challenging experience, both physically and mentally. Prenatal yoga offers an excellent way to stay active, improve circulation, ease back pain and prepare the body for labor.
 
-At Heal-In Sutras, sessions are never generic. We adapt asanas, breathing and rest to your trimester, body type and medical history. Combined with diet and lifestyle counseling, yoga becomes a complete pregnancy-care practice rather than a weekly stretch class.
+At Mummy Move, sessions are never generic. We adapt asanas, breathing and rest to your trimester, body type and medical history. Combined with diet and lifestyle counseling, yoga becomes a complete pregnancy-care practice rather than a weekly stretch class.
 
 Begin with a free consultation so we can understand your needs and match you with the right teacher.`,
     },

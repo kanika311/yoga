@@ -11,7 +11,7 @@ export default function ProgramPage({ program, faqs }) {
     <>
       <PageHero
         image={program.image}
-        eyebrow="Heal-In Sutras"
+        eyebrow="Mummy Move"
         title={program.title}
         subtitle={program.subtitle}
         cta={{ href: "/book-demo", label: "Book a Free Demo" }}

@@ -9,7 +9,7 @@ export default function CTABand({
       <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-gold/20 blur-3xl" />
       <div className="section relative flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
         <div>
-          <p className="eyebrow text-gold-soft">Heal-In Sutras</p>
+          <p className="eyebrow text-gold-soft">Mummy Move</p>
           <h2 className="font-serif text-4xl text-cream md:text-5xl">{title}</h2>
           <p className="mt-4 max-w-xl text-cream/80">{body}</p>
         </div>

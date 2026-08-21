@@ -14,7 +14,7 @@ export default function BlogForm({ id }) {
     content: "",
     image: "",
     category: "Wellness",
-    author: "Heal-In Sutras",
+    author: "Mummy Move",
     published: true,
   });
 
@@ -28,7 +28,7 @@ export default function BlogForm({ id }) {
         content: b.content || "",
         image: b.image || "",
         category: b.category || "Wellness",
-        author: b.author || "Heal-In Sutras",
+        author: b.author || "Mummy Move",
         published: b.published !== false,
       })
     );

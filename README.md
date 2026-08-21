@@ -1,4 +1,4 @@
-# Heal-In Sutras
+# Mumma-Move Sutras
 
 Unified **Next.js** app (frontend + MongoDB API in one folder), Tailwind CSS, and CMS at `/admin-yoga`.
 

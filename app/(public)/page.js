@@ -137,7 +137,7 @@ export default async function HomePage() {
           </div>
           <div className="flex items-center bg-forest px-8 py-16 text-cream md:px-16">
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-gold-soft">The Heal-In difference</p>
+              <p className="text-xs uppercase tracking-[0.3em] text-gold-soft">The Mummy Move difference</p>
               <h2 className="mt-3 font-serif text-4xl md:text-5xl">Not another generic maternity class</h2>
               <p className="mt-5 leading-relaxed text-cream/80">
                 Certified teachers, naturopaths, dietitians and birthing experts work together. We match you with the right trainer, design a session around your body, and stay with you through labor, lactation and recovery.
@@ -164,8 +164,8 @@ export default async function HomePage() {
       <section className="grid grid-cols-2 md:grid-cols-4">
         {[PHOTOS.gallery1, PHOTOS.gallery2, PHOTOS.gallery3, PHOTOS.gallery4].map((src, i) => (
           <div key={src} className="relative h-48 md:h-72">
-            <Image src={src} alt={`Heal-In Sutras practice ${i + 1}`} fill className="object-cover" sizes="25vw" />
-          </div>
+            <Image src={src} alt={`Mummy Move practice ${i + 1}`} fill className="object-cover" sizes="25vw" />
+          </div>  
         ))}
       </section>
 

@@ -20,8 +20,8 @@ const vibes = Great_Vibes({
 
 export const metadata = {
   title: {
-    default: "Heal-In Sutras | Prenatal, Fertility & Postnatal Yoga",
-    template: "%s | Heal-In Sutras",
+    default: "Mummy Move | Prenatal, Fertility & Postnatal Yoga",
+    template: "%s | Mummy Move",
   },
   description:
     "Personalized online yoga for fertility, prenatal and postnatal care. Diet, lifestyle, labor and lactation support from certified experts.",

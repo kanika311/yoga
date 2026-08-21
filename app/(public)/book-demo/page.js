@@ -11,7 +11,7 @@ export default function BookDemoPage() {
         image={PHOTOS.meditation}
         eyebrow="Complimentary"
         title="Book your free demo class"
-        subtitle="Tell us about your health, trimester or fertility goals. We will arrange a free session so you can feel the Heal-In Sutras approach first-hand."
+        subtitle="Tell us about your health, trimester or fertility goals. We will arrange a free session so you can feel the Mummy Move approach first-hand."
       />
       <section className="section grid items-start gap-12 lg:grid-cols-2">
         <div>

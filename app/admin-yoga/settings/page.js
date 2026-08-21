@@ -6,7 +6,7 @@ import Image from "next/image";
 import { api } from "@/lib/api";
 
 const defaultForm = {
-  siteName: "Heal-In Sutras",
+  siteName: "Mummy Move",
   tagline: "Yoga for a healthy life",
 
   email: "",
@@ -217,7 +217,7 @@ export default function SettingsAdmin() {
                     event.target.value
                   )
                 }
-                placeholder="Heal-In Sutras"
+                placeholder="Mummy Move"
               />
             </label>
 
@@ -363,7 +363,7 @@ export default function SettingsAdmin() {
                   event.target.value
                 )
               }
-              placeholder="Write about Heal-In Sutras..."
+              placeholder="Write about Mummy Move..."
             />
           </label>
 

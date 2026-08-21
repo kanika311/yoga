@@ -28,7 +28,7 @@ export default function AdminDashboard() {
   return (
     <div>
       <h1 className="font-serif text-4xl text-forest">Dashboard</h1>
-      <p className="mt-1 text-sm text-forest-mid">Manage Heal-In Sutras content, inquiries and settings.</p>
+      <p className="mt-1 text-sm text-forest-mid">Manage Mummy Move content, inquiries and settings.</p>
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
           ["Inquiries", stats.inquiries, "/admin-yoga/inquiries"],
