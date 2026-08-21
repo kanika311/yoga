@@ -17,10 +17,16 @@ import Settings from "@/models/Settings";
 export default async function Footer() {
   await connectDB();
 
-  const settings = await Settings.findOne().lean();
+  const settings =
+    await Settings.findOne().lean();
+
+  /**
+   * BASIC INFORMATION
+   */
 
   const siteName =
-    settings?.siteName || "Heal-In Sutras";
+    settings?.siteName ||
+    "Heal-In Sutras";
 
   const tagline =
     settings?.tagline ||
@@ -38,47 +44,72 @@ export default async function Footer() {
   const address =
     settings?.address || "";
 
+  /**
+   * LOGO
+   */
+
   const logo =
-    settings?.logo || "/logo.png";
-
-  const instagram =
-    settings?.social?.instagram || "";
-
-  const linkedin =
-    settings?.social?.linkedin || "";
-
-  const youtube =
-    settings?.social?.youtube || "";
+    settings?.logo ||
+    "/logo.png";
 
   /**
-   * Convert WhatsApp number into a clean
-   * international number.
+   * SOCIAL LINKS
+   */
+
+  const instagram =
+    settings?.social?.instagram ||
+    "";
+
+  const linkedin =
+    settings?.social?.linkedin ||
+    "";
+
+  const youtube =
+    settings?.social?.youtube ||
+    "";
+
+  /**
+   * Convert WhatsApp number
+   *
+   * Example:
    *
    * +91 98765 43210
-   * becomes
+   *
+   * becomes:
+   *
    * 919876543210
    */
+
   const whatsappNumber =
     whatsapp.replace(/\D/g, "");
 
-  const whatsappUrl = whatsappNumber
-    ? `https://wa.me/${whatsappNumber}`
-    : "";
+  const whatsappUrl =
+    whatsappNumber
+      ? `https://wa.me/${whatsappNumber}`
+      : "";
 
   return (
     <footer className="bg-forest-deep text-cream">
 
-      {/* ================= MAIN FOOTER ================= */}
+      {/* ==================================================
+          FOOTER CONTENT
+      ================================================== */}
 
       <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:grid-cols-4 md:px-8">
 
-        {/* ================= BRAND ================= */}
+
+        {/* ==================================================
+            BRAND
+        ================================================== */}
 
         <div>
 
           <div className="flex items-center gap-3">
 
-            <div className="relative h-12 w-12 overflow-hidden rounded-full">
+            {/* LOGO */}
+
+            <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full">
+
               <Image
                 src={logo}
                 alt={siteName}
@@ -86,9 +117,14 @@ export default async function Footer() {
                 className="object-cover"
                 unoptimized
               />
+
             </div>
 
+
+            {/* NAME */}
+
             <div>
+
               <p className="font-serif text-2xl">
                 {siteName}
               </p>
@@ -96,9 +132,13 @@ export default async function Footer() {
               <p className="font-script text-gold">
                 {tagline}
               </p>
+
             </div>
 
           </div>
+
+
+          {/* DESCRIPTION */}
 
           <p className="mt-4 text-sm leading-relaxed text-cream/75">
             Online yoga led by experts,
@@ -108,17 +148,21 @@ export default async function Footer() {
           </p>
 
 
-          {/* ================= SOCIAL ICONS ================= */}
+          {/* ==================================================
+              SOCIAL ICONS
+          ================================================== */}
 
           <div className="mt-6">
 
-            <p className="mb-3 text-sm font-medium text-cream">
+            <p className="mb-3 text-sm font-medium">
               Follow Us
             </p>
 
+
             <div className="flex items-center gap-3">
 
-              {/* Instagram */}
+
+              {/* INSTAGRAM */}
 
               {instagram && (
                 <a
@@ -126,13 +170,14 @@ export default async function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:border-gold hover:bg-gold hover:text-forest-deep"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition duration-200 hover:border-gold hover:bg-gold hover:text-forest-deep"
                 >
                   <Instagram size={18} />
                 </a>
               )}
 
-              {/* LinkedIn */}
+
+              {/* LINKEDIN */}
 
               {linkedin && (
                 <a
@@ -140,13 +185,14 @@ export default async function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:border-gold hover:bg-gold hover:text-forest-deep"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition duration-200 hover:border-gold hover:bg-gold hover:text-forest-deep"
                 >
                   <Linkedin size={18} />
                 </a>
               )}
 
-              {/* YouTube */}
+
+              {/* YOUTUBE */}
 
               {youtube && (
                 <a
@@ -154,13 +200,14 @@ export default async function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="YouTube"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:border-gold hover:bg-gold hover:text-forest-deep"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition duration-200 hover:border-gold hover:bg-gold hover:text-forest-deep"
                 >
                   <Youtube size={18} />
                 </a>
               )}
 
-              {/* WhatsApp */}
+
+              {/* WHATSAPP */}
 
               {whatsappUrl && (
                 <a
@@ -168,7 +215,7 @@ export default async function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="WhatsApp"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:border-gold hover:bg-gold hover:text-forest-deep"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 transition duration-200 hover:border-gold hover:bg-gold hover:text-forest-deep"
                 >
                   <MessageCircle size={18} />
                 </a>
@@ -181,7 +228,9 @@ export default async function Footer() {
         </div>
 
 
-        {/* ================= YOGA STUDIO ================= */}
+        {/* ==================================================
+            YOGA STUDIO
+        ================================================== */}
 
         <div>
 
@@ -232,7 +281,9 @@ export default async function Footer() {
         </div>
 
 
-        {/* ================= EXPLORE ================= */}
+        {/* ==================================================
+            EXPLORE
+        ================================================== */}
 
         <div>
 
@@ -283,7 +334,9 @@ export default async function Footer() {
         </div>
 
 
-        {/* ================= CONTACT ================= */}
+        {/* ==================================================
+            CONTACT
+        ================================================== */}
 
         <div>
 
@@ -291,9 +344,11 @@ export default async function Footer() {
             Contact
           </h3>
 
+
           <ul className="space-y-3 text-sm text-cream/80">
 
-            {/* Email */}
+
+            {/* EMAIL */}
 
             {email && (
               <li className="flex gap-2">
@@ -314,7 +369,7 @@ export default async function Footer() {
             )}
 
 
-            {/* Phone */}
+            {/* PHONE */}
 
             {phone && (
               <li className="flex gap-2">
@@ -338,7 +393,7 @@ export default async function Footer() {
             )}
 
 
-            {/* WhatsApp */}
+            {/* WHATSAPP */}
 
             {whatsappUrl && (
               <li className="flex gap-2">
@@ -361,7 +416,7 @@ export default async function Footer() {
             )}
 
 
-            {/* Address */}
+            {/* ADDRESS */}
 
             {address && (
               <li className="flex gap-2">
@@ -385,7 +440,9 @@ export default async function Footer() {
       </div>
 
 
-      {/* ================= COPYRIGHT ================= */}
+      {/* ==================================================
+          COPYRIGHT
+      ================================================== */}
 
       <div className="border-t border-white/10 py-5 text-center text-xs text-cream/50">
 

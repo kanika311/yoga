@@ -1,28 +1,29 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
 
 export interface ISettings extends Document {
   siteName: string;
-  tagline?: string;
-  email?: string;
-  phone?: string;
-  whatsapp?: string;
-  address?: string;
+  tagline: string;
 
-  about?: string;
+  email: string;
+  phone: string;
+  whatsapp: string;
+  address: string;
 
-  founderName?: string;
-  founderBio?: string;
-  founderImage?: string;
+  about: string;
 
-  logo?: string;
-  bannerImage?: string;
+  founderName: string;
+  founderBio: string;
+  founderImage: string;
 
-  hours?: string;
+  logo: string;
+  bannerImage: string;
+
+  hours: string;
 
   social: {
-    instagram?: string;
-    facebook?: string;
-    youtube?: string;
+    instagram: string;
+    linkedin: string;
+    youtube: string;
   };
 }
 
@@ -35,7 +36,7 @@ const settingsSchema = new Schema<ISettings>(
 
     tagline: {
       type: String,
-      default: "",
+      default: "Yoga for a healthy life",
     },
 
     email: {
@@ -78,13 +79,11 @@ const settingsSchema = new Schema<ISettings>(
       default: "",
     },
 
-    // Website Logo
     logo: {
       type: String,
       default: "",
     },
 
-    // Website Homepage Banner
     bannerImage: {
       type: String,
       default: "",
@@ -101,7 +100,7 @@ const settingsSchema = new Schema<ISettings>(
         default: "",
       },
 
-      facebook: {
+      linkedin: {
         type: String,
         default: "",
       },
@@ -117,5 +116,11 @@ const settingsSchema = new Schema<ISettings>(
   }
 );
 
-export default mongoose.models.Settings ||
-  mongoose.model<ISettings>("Settings", settingsSchema);
+const Settings =
+  mongoose.models.Settings ||
+  mongoose.model<ISettings>(
+    "Settings",
+    settingsSchema
+  );
+
+export default Settings;

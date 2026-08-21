@@ -7,8 +7,8 @@ import Settings from "@/models/Settings";
 /**
  * GET SETTINGS
  *
- * Public API
- * Used by frontend website and admin panel
+ * Public API.
+ * Used by frontend and admin settings page.
  */
 export async function GET() {
   try {
@@ -19,9 +19,12 @@ export async function GET() {
     if (!settings) {
       settings = await Settings.create({
         siteName: "Heal-In Sutras",
+
+        tagline: "Yoga for a healthy life",
+
         social: {
           instagram: "",
-          facebook: "",
+          linkedin: "",
           youtube: "",
         },
       });
@@ -29,7 +32,10 @@ export async function GET() {
 
     return NextResponse.json(settings);
   } catch (error) {
-    console.error("GET SETTINGS ERROR:", error);
+    console.error(
+      "GET /api/settings error:",
+      error
+    );
 
     return NextResponse.json(
       {
@@ -45,7 +51,7 @@ export async function GET() {
 /**
  * UPDATE SETTINGS
  *
- * Admin only
+ * Admin authenticated API.
  */
 export async function PUT(req: NextRequest) {
   try {
@@ -62,23 +68,97 @@ export async function PUT(req: NextRequest) {
     let settings = await Settings.findOne();
 
     if (!settings) {
-      settings = await Settings.create(body);
+      settings = await Settings.create({
+        ...body,
+
+        social: {
+          instagram:
+            body.social?.instagram || "",
+
+          linkedin:
+            body.social?.linkedin || "",
+
+          youtube:
+            body.social?.youtube || "",
+        },
+      });
     } else {
-      Object.assign(settings, body);
+      settings.siteName =
+        body.siteName ?? settings.siteName;
+
+      settings.tagline =
+        body.tagline ?? settings.tagline;
+
+      settings.email =
+        body.email ?? settings.email;
+
+      settings.phone =
+        body.phone ?? settings.phone;
+
+      settings.whatsapp =
+        body.whatsapp ?? settings.whatsapp;
+
+      settings.address =
+        body.address ?? settings.address;
+
+      settings.about =
+        body.about ?? settings.about;
+
+      settings.founderName =
+        body.founderName ??
+        settings.founderName;
+
+      settings.founderBio =
+        body.founderBio ??
+        settings.founderBio;
+
+      settings.founderImage =
+        body.founderImage ??
+        settings.founderImage;
+
+      settings.logo =
+        body.logo ?? settings.logo;
+
+      settings.bannerImage =
+        body.bannerImage ??
+        settings.bannerImage;
+
+      settings.hours =
+        body.hours ?? settings.hours;
+
+      settings.social = {
+        instagram:
+          body.social?.instagram ??
+          settings.social?.instagram ??
+          "",
+
+        linkedin:
+          body.social?.linkedin ??
+          settings.social?.linkedin ??
+          "",
+
+        youtube:
+          body.social?.youtube ??
+          settings.social?.youtube ??
+          "",
+      };
 
       await settings.save();
     }
 
     return NextResponse.json({
-      message: "Settings updated successfully",
+      message: "Settings saved successfully",
       settings,
     });
   } catch (error) {
-    console.error("PUT SETTINGS ERROR:", error);
+    console.error(
+      "PUT /api/settings error:",
+      error
+    );
 
     return NextResponse.json(
       {
-        message: "Failed to update settings",
+        message: "Failed to save settings",
       },
       {
         status: 500,
