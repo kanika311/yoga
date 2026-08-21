@@ -8,7 +8,7 @@ import { api, setToken } from "@/lib/api";
 export default function AdminLogin() {
   const router = useRouter();
 
-  const [email, setEmail] = useState("admin@healinsutras.com");
+  const [email, setEmail] = useState("admin@mummamove.com");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -93,7 +93,7 @@ export default function AdminLogin() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="admin@healinsutras.com"
+            placeholder="admin@mummamove.com"
             required
           />
         </label>

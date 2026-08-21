@@ -40,7 +40,7 @@ npm run dev
 
 ### CMS login
 
-- Email: `admin@healinsutras.com`
+- Email: `admin@mummamove.com`
 - Password: `Admin@123`
 
 Copy `.env.example` to `.env` and set `MONGO_URI` / `JWT_SECRET`.

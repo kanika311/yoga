@@ -51,7 +51,7 @@ async function run() {
   const password = await bcrypt.hash(process.env.ADMIN_PASSWORD || "Admin@123", 10);
   await User.create({
     name: "MummaMove Admin",
-    email: process.env.ADMIN_EMAIL || "admin@healinsutras.com",
+    email: process.env.ADMIN_EMAIL || "admin@mummamove.com",
     password,
     role: "admin",
   });
@@ -59,9 +59,9 @@ async function run() {
   await Settings.create({
     siteName: "MummaMove",
     tagline: "Fertility | Preconception | Prenatal | Postnatal Holistic Healing, Tailored to You",
-    email: "yoga@mummamove.com",
-    phone: "+91 8178930262",
-    whatsapp: "918178930262",
+    email: "hr@mummamove.com",
+    phone: "+91 9917580547",
+    whatsapp: "919917580547",
     address: "A-43 Dheeraj Nagar, Yamuna Enclave, Faridabad, 121003",
     about:  
       "MummaMove is an online yoga training platform for prenatal, postnatal and therapeutic yoga sessions. We offer customized yoga with a holistic approach — integrating diet plans and lifestyle changes as per each client's body and health needs.",
@@ -365,7 +365,7 @@ Reach out for a free consultation if rest is the issue you want to solve first.`
   ]);
 
   console.log("Seed complete.");
-  console.log("Admin login:", process.env.ADMIN_EMAIL || "admin@healinsutras.com");
+  console.log("Admin login:", process.env.ADMIN_EMAIL || "admin@mummamove.com");
   process.exit(0);
 }
 
