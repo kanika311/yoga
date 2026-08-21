@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --forest: #1e3a2b;
+  --gold: #c9a227;
+  --cream: #f6f1e8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-cream text-ink antialiased;
+}
+
+::selection {
+  background: #c9a227;
+  color: #13251c;
+}
+
+.gold-rule {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.gold-rule::before,
+.gold-rule::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, #c9a227, transparent);
+}
+
+.leaf-mark {
+  width: 10px;
+  height: 10px;
+  background: #c9a227;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  transform: rotate(180deg);
+}
+
+@layer components {
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold px-7 py-3 text-sm font-medium tracking-wide text-forest-deep shadow-soft transition hover:bg-gold-soft;
+  }
+  .btn-forest {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-forest px-7 py-3 text-sm font-medium tracking-wide text-cream transition hover:bg-forest-mid;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-cream/50 px-7 py-3 text-sm font-medium tracking-wide text-cream transition hover:bg-cream hover:text-forest;
+  }
+  .section {
+    @apply mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-28;
+  }
+  .eyebrow {
+    @apply mb-3 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.28em] text-gold-deep;
+  }
+  .display {
+    @apply font-serif text-4xl leading-tight text-forest md:text-6xl;
+  }
+  .input {
+    @apply w-full rounded-2xl border border-forest/10 bg-white px-4 py-3 text-sm outline-none ring-gold/30 transition focus:border-gold focus:ring-2;
+  }
+  .card {
+    @apply overflow-hidden rounded-[1.75rem] bg-white shadow-soft;
+  }
+}
