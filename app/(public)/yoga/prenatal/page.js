@@ -32,10 +32,14 @@ const FALLBACK = {
   ],
 };
 
+import { getProgramBySlug, getFAQs } from "@/lib/data";
+
+export const dynamic = "force-dynamic";
+
 export default async function PrenatalPage() {
   const [program, faqs] = await Promise.all([
-    apiSafe("/api/programs/prenatal", FALLBACK),
-    apiSafe("/api/faqs", []),
+    getProgramBySlug("prenatal", FALLBACK),
+    getFAQs([]),
   ]);
   return <ProgramPage program={{ ...FALLBACK, ...program }} faqs={faqs} />;
 }

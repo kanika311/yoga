@@ -58,7 +58,8 @@ async function run() {
 
   await Settings.create({
     siteName: "MummaMove",
-    tagline: "Fertility | Preconception | Prenatal | Postnatal Holistic Healing, Tailored to You",
+    tagline: "Prenatal | Postnatal | Fertility | Women Wellness",
+    logo: "/logo.jpeg",
     email: "hr@mummamove.com",
     phone: "+91 9917580547",
     whatsapp: "919917580547",
@@ -258,7 +259,7 @@ async function run() {
       title: "Home",
       heroTitle: "Holistic Wellness Journey",
       heroSubtitle:
-        "Fertility · Preconception · Prenatal · Postnatal — holistic healing, tailored to you.",
+        "Prenatal · Postnatal · Fertility | Women Wellness",
       heroImage:
         "https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?auto=format&fit=crop&w=2000&q=80",
     },

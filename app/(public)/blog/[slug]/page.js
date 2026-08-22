@@ -1,19 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { apiSafe } from "@/lib/api";
+import { getBlogBySlug } from "@/lib/data";
 import { PHOTOS } from "@/lib/constants";
 import CTABand from "@/components/CTABand";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const post = await apiSafe(`/api/blogs/${slug}`, null);
+  const post = await getBlogBySlug(slug);
   return { title: post?.title || "Article" };
 }
 
 export default async function BlogArticle({ params }) {
   const { slug } = await params;
-  const post = await apiSafe(`/api/blogs/${slug}`, null);
+  const post = await getBlogBySlug(slug);
   if (!post) notFound();
 
   return (

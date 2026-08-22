@@ -3,12 +3,13 @@ import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import CTABand from "@/components/CTABand";
 import { PHOTOS } from "@/lib/constants";
-import { apiSafe } from "@/lib/api";
+import { getSettings } from "@/lib/data";
 
+export const dynamic = "force-dynamic";
 export const metadata = { title: "About Us" };
 
 export default async function AboutPage() {
-  const settings = await apiSafe("/api/settings", {});
+  const settings = (await getSettings()) || {};
 
   return (
     <>

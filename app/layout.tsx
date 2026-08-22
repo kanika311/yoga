@@ -25,7 +25,7 @@ export const metadata = {
   },
   description:
     "Personalized online yoga for fertility, prenatal and postnatal care. Diet, lifestyle, labor and lactation support from certified experts.",
-  icons: { icon: "/logo.png" },
+  icons: { icon: "/logo.jpeg" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

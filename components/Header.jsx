@@ -10,9 +10,11 @@ import { api } from "@/lib/api";
 
 
 function getImageUrl(image) {
-  if (!image) return "/logo.png";
-  if (image.startsWith("http://") || image.startsWith("https://")) return image;
-  return "/logo.png"; // old/broken relative path fallback
+  if (!image || typeof image !== "string" || !image.trim()) return "/logo.jpeg";
+  if (image.startsWith("http://") || image.startsWith("https://") || image.startsWith("/")) {
+    return image;
+  }
+  return `/${image}`;
 }                                                             
 
 export default function Header() {
@@ -79,7 +81,7 @@ export default function Header() {
 
   const tagline =
     settings?.tagline ||
-    "YOGA FOR A HEALTHY LIFE";
+    "MummaMove";
 
   const headerBackground =
     scrolled || open

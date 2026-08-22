@@ -43,7 +43,7 @@ export default function AdminShell({ children }) {
       <div className="flex min-h-screen bg-cream">
         <aside className="hidden w-64 shrink-0 flex-col bg-forest-deep text-cream md:flex">
           <Link href="/admin-yoga" className="flex items-center gap-3 px-5 py-6">
-            <Image src="/logo.png" alt="" width={40} height={40} className="h-10 w-10 rounded-full object-cover" />
+            <Image src="/logo.jpeg" alt="" width={40} height={40} className="h-10 w-10 rounded-full object-cover" />
             <div>
               <p className="font-serif text-lg">MummaMove CMS</p>
            

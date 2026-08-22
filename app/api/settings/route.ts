@@ -20,7 +20,9 @@ export async function GET() {
       settings = await Settings.create({
         siteName: "MummaMove",
 
-        tagline: "Yoga for a healthy life",
+        tagline: "MummaMove",
+
+        logo: "/logo.jpeg",
 
         social: {
           instagram: "",

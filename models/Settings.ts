@@ -36,7 +36,7 @@ const settingsSchema = new Schema<ISettings>(
 
     tagline: {
       type: String,
-      default: "Yoga for a healthy life",
+      default: "MummaMove",
     },
 
     email: {
@@ -81,7 +81,7 @@ const settingsSchema = new Schema<ISettings>(
 
     logo: {
       type: String,
-      default: "",
+      default: "/logo.jpeg",
     },
 
     bannerImage: {

@@ -7,7 +7,7 @@ import { api } from "@/lib/api";
 
 const defaultForm = {
   siteName: "MummaMove",
-  tagline: "Yoga for a healthy life",
+  tagline: "MummaMove",
 
   email: "",
   phone: "",
@@ -235,7 +235,7 @@ export default function SettingsAdmin() {
                     event.target.value
                   )
                 }
-                placeholder="Yoga for a healthy life"
+                placeholder=""
               />
             </label>
 

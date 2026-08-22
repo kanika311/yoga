@@ -66,7 +66,7 @@ export default function AdminLogin() {
         {/* Logo */}
         <div className="mb-6 flex items-center gap-3">
           <Image
-            src="/logo.png"
+            src="/logo.jpeg"
             alt="Healinsutras"
             width={56}
             height={56}

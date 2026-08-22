@@ -8,9 +8,11 @@ import { api } from "@/lib/api";
 
 
 function getImageUrl(image) {
-  if (!image) return "/logo.png";
-  if (image.startsWith("http://") || image.startsWith("https://")) return image;
-  return "/logo.png"; // old/broken relative path fallback
+  if (!image || typeof image !== "string" || !image.trim()) return "/logo.jpeg";
+  if (image.startsWith("http://") || image.startsWith("https://") || image.startsWith("/")) {
+    return image;
+  }
+  return `/${image}`;
 }
 
 export default function Footer() {
@@ -43,7 +45,7 @@ export default function Footer() {
 
   const tagline =
     settings?.tagline ||
-    "YOGA FOR A HEALTHY LIFE";
+    "MummaMove";
 
   return (
     <footer className="border-t border-forest/10 bg-cream">
@@ -108,14 +110,14 @@ export default function Footer() {
               </Link>
 
               <Link
-                href="/programs"
+                href="/yoga/prenatal"
                 className="block text-sm text-forest-leaf transition hover:text-gold"
               >
                 Programs
               </Link>
 
               <Link
-                href="/blogs"
+                href="/blog"
                 className="block text-sm text-forest-leaf transition hover:text-gold"
               >
                 Blogs

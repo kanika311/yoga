@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HeartHandshake, Leaf, Target, Star } from "lucide-react";
-import { apiSafe } from "@/lib/api";
+import { getPrograms, getFAQs, getTestimonials } from "@/lib/data";
 import { INCLUSIONS, PHOTOS } from "@/lib/constants";
 import FAQList from "@/components/FAQList";
 import CTABand from "@/components/CTABand";
+
+export const dynamic = "force-dynamic";
 
 const FALLBACK_PROGRAMS = [
   {
@@ -14,19 +16,20 @@ const FALLBACK_PROGRAMS = [
       "Customized sessions from first to third trimester, with diet, lifestyle, childbirth and lactation prep.",
     image: PHOTOS.prenatal,
   },
-  {
-    slug: "fertility",
-    title: "Fertility Rebalance Program",
-    excerpt:
-      "Pelvic circulation, hormonal balance, fertility boosters and stress relief through yoga and counseling.",
-    image: PHOTOS.fertility,
-  },
+
   {
     slug: "postnatal",
     title: "Postnatal Recovery Program",
     excerpt:
       "Restore tissues, core and mood after baby with yoga, nutrition and sessions that fit your schedule.",
     image: PHOTOS.postnatal,
+  },
+  {
+    slug: "fertility",
+    title: "Fertility Rebalance Program",
+    excerpt:
+      "Pelvic circulation, hormonal balance, fertility boosters and stress relief through yoga and counseling.",
+    image: PHOTOS.fertility,
   },
 ];
 
@@ -36,9 +39,9 @@ export const metadata = {
 
 export default async function HomePage() {
   const [programs, faqs, testimonials] = await Promise.all([
-    apiSafe("/api/programs", FALLBACK_PROGRAMS),
-    apiSafe("/api/faqs", []),
-    apiSafe("/api/testimonials", []),
+    getPrograms(FALLBACK_PROGRAMS),
+    getFAQs([]),
+    getTestimonials([]),
   ]);
 
   return (
@@ -49,8 +52,8 @@ export default async function HomePage() {
         <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-5 pb-20 pt-32 md:px-8">
           <div className="max-w-2xl">
             <div className="mb-6 flex items-center gap-4">
-              <Image src="/logo.png" alt="" width={88} height={88} className="h-20 w-20 rounded-full object-cover ring-2 ring-gold/60 md:h-24 md:w-24" />
-              <p className="font-script text-4xl text-gold-soft md:text-5xl">Yoga for a healthy life</p>
+              <Image src="/logo.jpeg" alt="" width={88} height={88} className="h-20 w-20 rounded-full object-cover ring-2 ring-gold/60 md:h-24 md:w-24" />
+              <p className="font-script text-4xl text-gold-soft md:text-5xl">MummaMove</p>
             </div>
             <p className="text-xs uppercase tracking-[0.35em] text-gold-soft">Fertility · Prenatal · Postnatal</p>
             <h1 className="mt-4 font-serif text-5xl leading-[0.95] text-cream md:text-7xl">
@@ -59,7 +62,7 @@ export default async function HomePage() {
               Wellness Journey
             </h1>
             <p className="mt-6 max-w-lg text-lg text-cream/85">
-              Holistic healing, tailored to you. Personal trainers, dietitians and birthing experts — online, across 15 countries.
+              Personal trainers, dietitians and birthing experts — online, across 15 countries.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/book-demo" className="btn-gold">Free Consultation</Link>
@@ -165,7 +168,7 @@ export default async function HomePage() {
         {[PHOTOS.gallery1, PHOTOS.gallery2, PHOTOS.gallery3, PHOTOS.gallery4].map((src, i) => (
           <div key={src} className="relative h-48 md:h-72">
             <Image src={src} alt={`MummaMove practice ${i + 1}`} fill className="object-cover" sizes="25vw" />
-          </div>  
+          </div>
         ))}
       </section>
 

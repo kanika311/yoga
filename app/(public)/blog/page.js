@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
-import { apiSafe } from "@/lib/api";
+import { getBlogs } from "@/lib/data";
 import { PHOTOS } from "@/lib/constants";
 
+export const dynamic = "force-dynamic";
 export const metadata = { title: "Blogs" };
 
 export default async function BlogPage() {
-  const posts = await apiSafe("/api/blogs", []);
+  const posts = await getBlogs();
 
   return (
     <>
