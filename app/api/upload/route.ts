@@ -1,36 +1,31 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requireAuth } from "@/lib/auth";
-
-import fs from "fs/promises";
-import path from "path";
-import crypto from "crypto";
+import { v2 as cloudinary } from "cloudinary";
 
 export const runtime = "nodejs";
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
-const ALLOWED_TYPES: Record<string, string> = {
-  "image/jpeg": ".jpg",
-  "image/png": ".png",
-  "image/webp": ".webp",
-  "image/gif": ".gif",
-};
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
+
+const ALLOWED_TYPES = new Set([
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "image/gif",
+]);
 
 export async function POST(req: NextRequest) {
   try {
-    // --------------------------------------------------
-    // 1. Authentication
-    // --------------------------------------------------
-
     const { error } = await requireAuth();
 
     if (error) {
       return error;
     }
-
-    // --------------------------------------------------
-    // 2. Get form data
-    // --------------------------------------------------
 
     const formData = await req.formData();
 
@@ -39,165 +34,74 @@ export async function POST(req: NextRequest) {
     if (!(file instanceof File)) {
       return NextResponse.json(
         {
+          success: false,
           message: "No image selected",
         },
-        {
-          status: 400,
-        }
+        { status: 400 }
       );
     }
 
-    // --------------------------------------------------
-    // 3. Validate file type
-    // --------------------------------------------------
-
-    const extension = ALLOWED_TYPES[file.type];
-
-    if (!extension) {
+    if (!ALLOWED_TYPES.has(file.type)) {
       return NextResponse.json(
         {
+          success: false,
           message:
             "Only JPG, PNG, WEBP and GIF images are allowed",
         },
-        {
-          status: 400,
-        }
-      );
-    }
-
-    // --------------------------------------------------
-    // 4. Validate file size
-    // --------------------------------------------------
-
-    if (file.size <= 0) {
-      return NextResponse.json(
-        {
-          message: "Invalid image file",
-        },
-        {
-          status: 400,
-        }
+        { status: 400 }
       );
     }
 
     if (file.size > MAX_FILE_SIZE) {
       return NextResponse.json(
         {
+          success: false,
           message: "Image size must be less than 5MB",
         },
-        {
-          status: 400,
-        }
+        { status: 400 }
       );
     }
-
-    // --------------------------------------------------
-    // 5. Upload directory
-    // --------------------------------------------------
-
-    const uploadDirectory = path.join(
-      process.cwd(),
-      "public",
-      "uploads"
-    );
-
-    // Create directory if it doesn't exist
-    await fs.mkdir(uploadDirectory, {
-      recursive: true,
-    });
-
-    // --------------------------------------------------
-    // 6. Generate unique filename
-    // --------------------------------------------------
-
-    const filename =
-      `${Date.now()}-${crypto.randomUUID()}${extension}`;
-
-    // --------------------------------------------------
-    // 7. Create file path
-    // --------------------------------------------------
-
-    const filePath = path.join(
-      uploadDirectory,
-      filename
-    );
-
-    // --------------------------------------------------
-    // 8. Convert File -> Buffer
-    // --------------------------------------------------
 
     const bytes = await file.arrayBuffer();
-
     const buffer = Buffer.from(bytes);
 
-    // --------------------------------------------------
-    // 9. Save image
-    // --------------------------------------------------
-
-    await fs.writeFile(filePath, buffer);
-
-    // --------------------------------------------------
-    // 10. Verify file exists
-    // --------------------------------------------------
-
-    try {
-      await fs.access(filePath);
-    } catch {
-      return NextResponse.json(
+    // Upload the buffer to Cloudinary via its upload_stream API
+    const result = await new Promise<{
+      secure_url: string;
+      public_id: string;
+    }>((resolve, reject) => {
+      const uploadStream = cloudinary.uploader.upload_stream(
         {
-          message:
-            "Image was uploaded but could not be verified",
+          folder: "mummamove", // change/remove as you like
+          resource_type: "image",
         },
-        {
-          status: 500,
+        (error, result) => {
+          if (error || !result) {
+            reject(error || new Error("Upload failed"));
+            return;
+          }
+          resolve(result as { secure_url: string; public_id: string });
         }
       );
-    }
 
-    // --------------------------------------------------
-    // 11. Public URL
-    // --------------------------------------------------
+      uploadStream.end(buffer);
+    });
 
-    const url = `/uploads/${filename}`;
-
-    // If you need complete URL:
-    const origin = req.nextUrl.origin;
-
-    const fullUrl = `${origin}${url}`;
-
-    // --------------------------------------------------
-    // 12. Response
-    // --------------------------------------------------
-
-    return NextResponse.json(
-      {
-        success: true,
-        message: "Image uploaded successfully",
-
-        filename,
-
-        url,
-
-        fullUrl,
-      },
-      {
-        status: 201,
-      }
-    );
+    return NextResponse.json({
+      success: true,
+      message: "Image uploaded successfully",
+      filename: result.public_id,
+      url: result.secure_url, // full public URL, e.g. https://res.cloudinary.com/xxx/image/upload/v.../mummamove/abc.jpg
+    });
   } catch (error) {
-    console.error(
-      "POST /api/upload error:",
-      error
-    );
+    console.error("UPLOAD ERROR:", error);
 
     return NextResponse.json(
       {
         success: false,
         message: "Image upload failed",
       },
-      {
-        status: 500,
-      }
+      { status: 500 }
     );
   }
 }
