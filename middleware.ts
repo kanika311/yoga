@@ -15,5 +15,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin-yoga", "/admin-yoga/((?!login).*)"],
+  matcher: ["/admin-yoga", "/admin-yoga/:path*"],
 };

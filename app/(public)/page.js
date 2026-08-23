@@ -5,6 +5,7 @@ import { getPrograms, getFAQs, getTestimonials } from "@/lib/data";
 import { INCLUSIONS, PHOTOS } from "@/lib/constants";
 import FAQList from "@/components/FAQList";
 import CTABand from "@/components/CTABand";
+import TestimonialsSection from "@/components/TestimonialsSection";
 
 export const dynamic = "force-dynamic";
 
@@ -172,35 +173,8 @@ export default async function HomePage() {
         ))}
       </section>
 
-      {testimonials.length > 0 && (
-        <section className="bg-white">
-          <div className="section">
-            <p className="eyebrow">Client voices</p>
-            <h2 className="display mb-10">Trusted across 15 nations</h2>
-            <div className="grid gap-6 md:grid-cols-3">
-              {testimonials.map((t) => (
-                <blockquote key={t._id || t.name} className="rounded-[1.75rem] bg-cream p-7">
-                  <div className="mb-3 flex gap-1 text-gold">
-                    {Array.from({ length: t.rating || 5 }).map((_, i) => (
-                      <Star key={i} size={16} fill="currentColor" />
-                    ))}
-                  </div>
-                  <p className="font-serif text-xl leading-relaxed text-forest">“{t.quote}”</p>
-                  <footer className="mt-5 flex items-center gap-3">
-                    {t.image && (
-                      <Image src={t.image} alt="" width={48} height={48} className="h-12 w-12 rounded-full object-cover" />
-                    )}
-                    <div>
-                      <p className="font-medium text-forest">{t.name}</p>
-                      <p className="text-xs text-forest-leaf">{t.role}</p>
-                    </div>
-                  </footer>
-                </blockquote>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      {/* Testimonials & Review Form Section */}
+      <TestimonialsSection initialTestimonials={testimonials} />
 
       {faqs.length > 0 && (
         <section className="section max-w-4xl">

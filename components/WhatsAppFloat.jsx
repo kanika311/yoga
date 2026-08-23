@@ -1,12 +1,33 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { SITE } from "@/lib/constants";
+import { api } from "@/lib/api";
 
 export default function WhatsAppFloat() {
+  const [settings, setSettings] = useState(null);
+
+  useEffect(() => {
+    api("/api/settings")
+      .then((data) => {
+        if (data) setSettings(data);
+      })
+      .catch((err) => {
+        console.error("Failed to load WhatsApp settings:", err);
+      });
+  }, []);
+
+  const rawNumber = settings?.whatsapp || SITE.whatsapp || "919917580547";
+  const cleanNumber = rawNumber.replace(/[^0-9]/g, "");
+  const message =
+    settings?.whatsappMessage || "Hi, I would like a free prenatal yoga consultation.";
+
   return (
     <a
-      href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent("Hi, I would like a free prenatal yoga consultation.")}`}
+      href={`https://wa.me/${cleanNumber}?text=${encodeURIComponent(message)}`}
       target="_blank"
       rel="noreferrer"
-      className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-soft transition hover:scale-105"
+      className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition duration-200 hover:scale-110"
       aria-label="WhatsApp"
     >
       <svg viewBox="0 0 32 32" className="h-7 w-7" fill="currentColor">

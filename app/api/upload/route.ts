@@ -21,12 +21,6 @@ const ALLOWED_TYPES = new Set([
 
 export async function POST(req: NextRequest) {
   try {
-    const { error } = await requireAuth();
-
-    if (error) {
-      return error;
-    }
-
     const formData = await req.formData();
 
     const file = formData.get("image");

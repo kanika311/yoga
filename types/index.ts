@@ -46,5 +46,12 @@ export type Testimonial = {
   role?: string;
   quote: string;
   image?: string;
+  country?: string;
+  email?: string;
   rating?: number;
+  published?: boolean;
+  status?: "pending" | "approved" | "rejected";
+  order?: number;
+  createdAt?: string;
+  updatedAt?: string;
 };

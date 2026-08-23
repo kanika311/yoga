@@ -68,7 +68,12 @@ export async function getFAQs(fallback: any[] = []) {
 export async function getTestimonials(fallback: any[] = []) {
   try {
     await connectDB();
-    const items = await Testimonial.find({ published: { $ne: false } }).sort({ createdAt: -1 }).lean();
+    const items = await Testimonial.find({
+      published: { $ne: false },
+      status: { $nin: ["pending", "rejected"] },
+    })
+      .sort({ order: 1, createdAt: -1 })
+      .lean();
     return JSON.parse(JSON.stringify(items));
   } catch (error) {
     console.error("getTestimonials error:", error);

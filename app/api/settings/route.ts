@@ -100,6 +100,9 @@ export async function PUT(req: NextRequest) {
       settings.whatsapp =
         body.whatsapp ?? settings.whatsapp;
 
+      settings.whatsappMessage =
+        body.whatsappMessage ?? settings.whatsappMessage;
+
       settings.address =
         body.address ?? settings.address;
 

@@ -30,8 +30,14 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${outfit.variable} ${vibes.variable}`}>
-      <body className="font-sans">{children}</body>
+    <html
+      lang="en"
+      className={`${cormorant.variable} ${outfit.variable} ${vibes.variable}`}
+      suppressHydrationWarning
+    >
+      <body className="font-sans" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }

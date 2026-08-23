@@ -1,17 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { api, setToken } from "@/lib/api";
+import { api } from "@/lib/api";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function AdminLogin() {
   const router = useRouter();
+  const { user, loading: authLoading, login } = useAuth();
 
   const [email, setEmail] = useState("admin@mummamove.com");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // If already logged in, redirect automatically to admin dashboard
+  useEffect(() => {
+    if (!authLoading && user) {
+      router.replace("/admin-yoga");
+    }
+  }, [user, authLoading, router]);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -30,12 +39,12 @@ export default function AdminLogin() {
 
       console.log("Login response:", data);
 
-      if (!data?.token) {
-        throw new Error("Login successful but token was not received.");
+      if (!data?.token || !data?.user) {
+        throw new Error("Login successful but authentication data was not received.");
       }
 
-      // Save token
-      setToken(data.token);
+      // Update Auth context and store token
+      login(data.token, data.user);
 
       // Redirect to admin dashboard
       router.replace("/admin-yoga");

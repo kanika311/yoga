@@ -13,8 +13,8 @@ import {
   Settings,
   LogOut,
 } from "lucide-react";
-import { api, setToken } from "@/lib/api";
 import Guard from "@/components/admin/Guard";
+import { useAuth } from "@/hooks/useAuth";
 
 const LINKS = [
   { href: "/admin-yoga", label: "Dashboard", icon: LayoutDashboard },
@@ -29,12 +29,10 @@ const LINKS = [
 export default function AdminShell({ children }) {
   const path = usePathname();
   const router = useRouter();
+  const { user, logout } = useAuth();
 
-  async function logout() {
-    try {
-      await api("/api/auth/logout", { method: "POST" });
-    } catch {}
-    setToken(null);
+  async function handleLogout() {
+    await logout();
     router.push("/admin-yoga/login");
   }
 
@@ -46,7 +44,6 @@ export default function AdminShell({ children }) {
             <Image src="/logo.jpeg" alt="" width={40} height={40} className="h-10 w-10 rounded-full object-cover" />
             <div>
               <p className="font-serif text-lg">MummaMove CMS</p>
-           
             </div>
           </Link>
           <nav className="flex-1 space-y-1 px-3">
@@ -66,11 +63,17 @@ export default function AdminShell({ children }) {
               );
             })}
           </nav>
-          <div className="p-4">
-            <Link href="/" className="mb-2 block text-xs text-cream/50 hover:text-gold">
+          <div className="border-t border-white/10 p-4">
+            {user && (
+              <div className="mb-3 px-2">
+                <p className="truncate text-xs font-semibold text-gold">{user.name || "Admin"}</p>
+                <p className="truncate text-[11px] text-cream/60">{user.email}</p>
+              </div>
+            )}
+            <Link href="/" className="mb-2 block px-2 text-xs text-cream/50 hover:text-gold">
               View website →
             </Link>
-            <button onClick={logout} className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-cream/80 hover:bg-white/10">
+            <button onClick={handleLogout} className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-cream/80 hover:bg-white/10">
               <LogOut size={16} /> Sign out
             </button>
           </div>
@@ -78,7 +81,7 @@ export default function AdminShell({ children }) {
         <div className="flex min-w-0 flex-1 flex-col">
           <header className="flex items-center justify-between border-b border-forest/10 bg-white px-5 py-4 md:hidden">
             <p className="font-serif text-lg text-forest">CMS</p>
-            <button onClick={logout} className="text-sm text-forest-mid">
+            <button onClick={handleLogout} className="text-sm text-forest-mid">
               Sign out
             </button>
           </header>

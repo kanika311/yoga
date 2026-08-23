@@ -7,6 +7,7 @@ export interface ISettings extends Document {
   email: string;
   phone: string;
   whatsapp: string;
+  whatsappMessage: string;
   address: string;
 
   about: string;
@@ -52,6 +53,11 @@ const settingsSchema = new Schema<ISettings>(
     whatsapp: {
       type: String,
       default: "",
+    },
+
+    whatsappMessage: {
+      type: String,
+      default: "Hi, I would like a free prenatal yoga consultation.",
     },
 
     address: {

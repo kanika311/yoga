@@ -22,28 +22,30 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [yogaOpen, setYogaOpen] = useState(false);
   const [settings, setSettings] = useState(null);  
+  const [programsList, setProgramsList] = useState([]);
 
   // ---------------------------------------------
-  // Load CMS settings
+  // Load CMS settings and Programs
   // ---------------------------------------------
 
   useEffect(() => {
-    async function loadSettings() {
+    async function loadData() {
       try {
-        const data = await api("/api/settings");
+        const [settingsData, programsData] = await Promise.all([
+          api("/api/settings").catch(() => null),
+          api("/api/programs").catch(() => []),
+        ]);
 
-        console.log("HEADER SETTINGS:", data);
-
-        setSettings(data);
+        if (settingsData) setSettings(settingsData);
+        if (Array.isArray(programsData) && programsData.length > 0) {
+          setProgramsList(programsData);
+        }
       } catch (error) {
-        console.error(
-          "Failed to load header settings:",
-          error
-        );
+        console.error("Failed to load header data:", error);
       }
     }
 
-    loadSettings();
+    loadData();
   }, []);
 
   // ---------------------------------------------
@@ -88,6 +90,20 @@ export default function Header() {
       ? "bg-cream/95 shadow-sm backdrop-blur-md"
       : "bg-cream/95";
 
+  // Dynamic nav items including custom programs
+  const navItems = NAV.map((item) => {
+    if (item.label === "Yoga" && programsList.length > 0) {
+      return {
+        ...item,
+        children: programsList.map((p) => ({
+          href: `/yoga/${p.slug}`,
+          label: p.title,
+        })),
+      };
+    }
+    return item;
+  });
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b border-forest/10 transition-all duration-300 ${headerBackground}`}
@@ -126,7 +142,7 @@ export default function Header() {
         {/* ================= DESKTOP NAVIGATION ================= */}
 
         <nav className="hidden items-center gap-10 lg:flex">
-          {NAV.map((item) =>
+          {navItems.map((item) =>
             item.children ? (
               <div
                 key={item.label}
@@ -199,7 +215,7 @@ export default function Header() {
 
       {open && (
         <div className="border-t border-forest/10 bg-cream px-6 py-5 lg:hidden">
-          {NAV.map((item) => (
+          {navItems.map((item) => (
             <div
               key={item.label}
               className="border-b border-forest/10 py-3"

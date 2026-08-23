@@ -12,16 +12,9 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     let alive = true;
     async function load() {
-      if (!getToken()) {
-        if (alive) {
-          setUser(null);
-          setLoading(false);
-        }
-        return;
-      }
       try {
         const data = await api("/api/auth/me");
-        if (alive) setUser(data.user);
+        if (alive) setUser(data?.user || null);
       } catch {
         setToken(null);
         if (alive) setUser(null);
