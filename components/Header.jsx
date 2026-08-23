@@ -114,9 +114,9 @@ export default function Header() {
 
         <Link
           href="/"
-          className="flex shrink-0 items-center gap-4"
+          className="flex shrink-0 items-center gap-3 sm:gap-4 max-w-[80vw] lg:max-w-none"
         >
-          <div className="relative h-[72px] w-[72px] shrink-0 overflow-hidden rounded-full ring-1 ring-gold/30">
+          <div className="relative h-[56px] w-[56px] sm:h-[64px] sm:w-[64px] lg:h-[72px] lg:w-[72px] shrink-0 overflow-hidden rounded-full ring-1 ring-gold/30">
             <Image
               src={logo}
               alt={siteName}
@@ -128,12 +128,12 @@ export default function Header() {
             />
           </div>
 
-          <div className="flex flex-col justify-center">
-            <p className="font-serif text-[25px] font-medium tracking-wide text-forest">
+          <div className="flex flex-col justify-center min-w-0">
+            <p className="font-serif text-[20px] sm:text-[23px] lg:text-[25px] font-medium tracking-wide text-forest leading-tight">
               {siteName}
             </p>
 
-            <p className="mt-1 max-w-[280px] truncate text-[11px] font-medium uppercase tracking-[0.28em] text-forest-leaf">
+            <p className="mt-0.5 sm:mt-1 text-[9px] sm:text-[10px] lg:text-[11px] font-medium uppercase tracking-[0.08em] sm:tracking-[0.16em] lg:tracking-[0.22em] text-forest-leaf whitespace-normal sm:whitespace-nowrap">
               {tagline}
             </p>
           </div>

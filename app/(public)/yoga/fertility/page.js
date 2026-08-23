@@ -28,7 +28,7 @@ const FALLBACK = {
   ],
   focusAreas: [
     "Personalized approach",
-    "Holistic wellness",
+    "Women wellness",
     "Expert guidance",
     "Lifestyle optimization",
     "Education and empowerment",

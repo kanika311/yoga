@@ -65,7 +65,7 @@ async function run() {
     whatsapp: "919917580547",
     address: "A-43 Dheeraj Nagar, Yamuna Enclave, Faridabad, 121003",
     about:  
-      "MummaMove is an online yoga training platform for prenatal, postnatal and therapeutic yoga sessions. We offer customized yoga with a holistic approach — integrating diet plans and lifestyle changes as per each client's body and health needs.",
+      "MummaMove is an online yoga training platform for prenatal, postnatal and therapeutic yoga sessions. We offer customized yoga with a Women approach — integrating diet plans and lifestyle changes as per each client's body and health needs.",
     founderName: "Priya Sharma",
     founderBio:
       "Priya Sharma is a multifaceted expert in naturopathy, yoga, nutrition, and alternative therapies. She offers personalized guidance in diet and lifestyle changes. Together with her team, she has trained clients worldwide in prenatal, postnatal, and fertility yoga.",
@@ -153,7 +153,7 @@ async function run() {
       excerpt:
         "Relaxation, pelvic circulation, weight management, fertility boosters, hormonal balance and improved blood flow — with yoga, diet and lifestyle counseling tailored to your needs.",
       description:
-        "The Fertility Rebalance Program targets core fertility issues, prioritizing root-cause identification and holistic solutions. WHO research highlights ovulatory disorders (including PCOS and PCOD) and endometriosis among leading factors of female infertility. We personalize yoga, pranayama, meditation, nutrition and lifestyle work to your body and history.",
+        "The Fertility Rebalance Program targets core fertility issues, prioritizing root-cause identification and Women solutions. WHO research highlights ovulatory disorders (including PCOS and PCOD) and endometriosis among leading factors of female infertility. We personalize yoga, pranayama, meditation, nutrition and lifestyle work to your body and history.",
       image: img.fertility,
       highlights: [
         "Root-cause focused methodology",
@@ -172,7 +172,7 @@ async function run() {
       ],
       focusAreas: [
         "Personalized approach",
-        "Holistic wellness",
+        "Women wellness",
         "Expert guidance",
         "Lifestyle optimization",
         "Stress reduction",
@@ -193,7 +193,7 @@ async function run() {
     {
       question: "How is MummaMove different from other prenatal yoga studios?",
       answer:
-        "We take a holistic approach that extends far beyond the mat. Sessions are never generic — we work to address root causes. Trainers are certified, handpicked after a rigorous process, and supported by yoga experts, naturopaths, dietitians and birthing specialists.",
+        "We take a Women approach that extends far beyond the mat. Sessions are never generic — we work to address root causes. Trainers are certified, handpicked after a rigorous process, and supported by yoga experts, naturopaths, dietitians and birthing specialists.",
       category: "general",
       order: 2,
     },
@@ -257,7 +257,7 @@ async function run() {
     {
       slug: "home",
       title: "Home",
-      heroTitle: "Holistic Wellness Journey",
+      heroTitle: "Women Wellness Journey",
       heroSubtitle:
         "Prenatal · Postnatal · Fertility | Women Wellness",
       heroImage:
@@ -267,11 +267,11 @@ async function run() {
       slug: "about",
       title: "About Us",
       heroTitle: "MummaMove's Trump Card",
-      heroSubtitle: "Certified experts. Holistic methods. Personal care across 15 countries.",
+      heroSubtitle: "Certified experts. Women methods. Personal care across 15 countries.",
       heroImage: img.yogaStudio,
       sections: [
         {
-          heading: "Holistic Wellness Expertise",
+          heading: "Women Wellness Expertise",
           body: "Priya Sharma is a multifaceted expert in naturopathy, yoga, nutrition, and alternative therapies. She offers personalized guidance in diet and lifestyle changes.",
           image: img.founder,
         },

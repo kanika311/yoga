@@ -32,7 +32,7 @@ export default async function AboutPage() {
           />
         </div>
         <div>
-          <p className="eyebrow">Holistic wellness expertise</p>
+          <p className="eyebrow">Women wellness expertise</p>
           <h2 className="display">{settings.founderName || "Priya Sharma"}</h2>
           <p className="mt-5 leading-relaxed text-forest-mid">
             {settings.founderBio ||

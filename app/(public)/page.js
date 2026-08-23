@@ -35,7 +35,7 @@ const FALLBACK_PROGRAMS = [
 ];
 
 export const metadata = {
-  title: "Holistic Wellness Journey",
+  title: "Women Wellness Journey",
 };
 
 export default async function HomePage() {
@@ -58,7 +58,7 @@ export default async function HomePage() {
             </div>
             <p className="text-xs uppercase tracking-[0.35em] text-gold-soft">Prenatal · Postnatal · Fertility</p>
             <h1 className="mt-4 font-serif text-5xl leading-[0.95] text-cream md:text-7xl">
-              Holistic
+              Women
               <br />
               Wellness Journey
             </h1>
@@ -79,7 +79,7 @@ export default async function HomePage() {
             ["15+", "Countries served"],
             ["1:1", "Personal teachers"],
             ["Free", "Demo session"],
-            ["Holistic", "Yoga + diet + lifestyle"],
+            ["Women", "Yoga + diet + lifestyle"],
           ].map(([n, l]) => (
             <div key={l}>
               <p className="font-serif text-4xl text-gold-soft">{n}</p>
@@ -91,14 +91,14 @@ export default async function HomePage() {
 
       <section className="section">
         <p className="eyebrow">Tailored wellness</p>
-        <h2 className="display max-w-3xl">Personal trainers and a holistic approach for your unique body</h2>
+        <h2 className="display max-w-3xl">Personal trainers and a Women approach for your unique body</h2>
         <p className="mt-5 max-w-2xl text-forest-mid">
           Given the uniqueness of you and your health needs, a tailored solution is essential. Sessions are customized to health status, body type and history of ailments — then refined as you progress.
         </p>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {[
             { icon: Target, title: "Tailored Program", body: "Sessions customized to your health status, body type and history of any ailments." },
-            { icon: Leaf, title: "Holistic Approach", body: "Yoga plus consultation on diet, lifestyle, labor and lactation." },
+            { icon: Leaf, title: "Women Approach", body: "Yoga plus consultation on diet, lifestyle, labor and lactation." },
             { icon: HeartHandshake, title: "End Goal", body: "Designed around problem areas for effective results that address the root cause." },
           ].map((item) => (
             <div key={item.title} className="rounded-[1.75rem] bg-white p-8 shadow-soft">
@@ -154,7 +154,7 @@ export default async function HomePage() {
 
       <section className="section">
         <p className="eyebrow">Every step, every tear, every smile</p>
-        <h2 className="display mb-10">Our holistic embrace</h2>
+        <h2 className="display mb-10">Our Women embrace</h2>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {INCLUSIONS.map((inc) => (
             <div key={inc.title} className="rounded-3xl border border-forest/10 bg-white p-6">

@@ -75,7 +75,7 @@ export default function Footer() {
                   {siteName}
                 </p>
 
-                <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.25em] text-forest-leaf">
+                <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.14em] sm:tracking-[0.2em] text-forest-leaf">
                   {tagline}
                 </p>
               </div>

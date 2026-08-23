@@ -264,7 +264,7 @@ export default function TestimonialsSection({ initialTestimonials = [] }) {
                   Share Your Experience
                 </h3>
                 <p className="text-xs text-forest-mid mt-0.5">
-                  Your words help expectant & new mothers choose the right holistic guidance.
+                  Your words help expectant & new mothers choose the right Women guidance.
                 </p>
               </div>
 

@@ -73,7 +73,7 @@ export default function ProgramPage({ program, faqs }) {
 
       <section className="bg-cream-dark">
         <div className="section">
-          <p className="eyebrow">Holistic embrace</p>
+          <p className="eyebrow">Women embrace</p>
           <h2 className="display mb-10">Care beyond the mat</h2>
           <div className="grid gap-6 md:grid-cols-3">
             {INCLUSIONS.map((inc) => (
