@@ -6,8 +6,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/about",
     "/yoga/prenatal",
-    "/yoga/fertility",
+   
     "/yoga/postnatal",
+     "/yoga/fertility",
     "/blog",
     "/contact",
     "/book-demo",

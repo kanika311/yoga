@@ -55,7 +55,7 @@ export default async function HomePage() {
               <Image src="/logo.jpeg" alt="" width={88} height={88} className="h-20 w-20 rounded-full object-cover ring-2 ring-gold/60 md:h-24 md:w-24" />
               <p className="font-script text-4xl text-gold-soft md:text-5xl">MummaMove</p>
             </div>
-            <p className="text-xs uppercase tracking-[0.35em] text-gold-soft">Fertility · Prenatal · Postnatal</p>
+            <p className="text-xs uppercase tracking-[0.35em] text-gold-soft">Prenatal · Postnatal · Fertility</p>
             <h1 className="mt-4 font-serif text-5xl leading-[0.95] text-cream md:text-7xl">
               Holistic
               <br />

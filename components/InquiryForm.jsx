@@ -98,8 +98,8 @@ export default function InquiryForm({ type = "contact", defaultProgram = "" }) {
           <select className="input mt-1" value={form.program} onChange={(e) => set("program", e.target.value)}>
             <option value="">Select a program</option>
             <option>Pregnancy Care Program</option>
-            <option>Fertility Rebalance Program</option>
             <option>Postnatal Recovery Program</option>
+            <option>Fertility Rebalance Program</option>
           </select>
         </label>
       </div>
