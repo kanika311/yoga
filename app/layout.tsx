@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit, Great_Vibes } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -18,7 +20,7 @@ const vibes = Great_Vibes({
   variable: "--font-vibes",
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: {
     default: "MummaMove | Prenatal, Postnatal & Fertility Yoga",
     template: "%s | MummaMove",
@@ -26,6 +28,9 @@ export const metadata = {
   description:
     "Personalized online yoga for prenatal, postnatal and fertility care. Diet, lifestyle, labor and lactation support from certified experts.",
   icons: { icon: "/logo.jpeg" },
+  verification: {
+    google: "XtUvcB69Z-ZoVdqYr_Mc833dtysRXs1G0XjyKkQvw1M",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -36,6 +41,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body className="font-sans" suppressHydrationWarning>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-3NCPBCL0K6"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-3NCPBCL0K6');
+          `}
+        </Script>
         {children}
       </body>
     </html>
